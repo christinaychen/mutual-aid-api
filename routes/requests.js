@@ -1,13 +1,10 @@
 const express = require('express');
-const { getSpreadSheet, getSpreadSheetValues } = require('../service/googleSheetsService');
-const { google } = require('googleapis');
-const { json } = require('express');
-const sheets = google.sheets('v4');
-const SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+const {v4: uuidv4} = require('uuid')
+const { getSpreadSheetValues } = require('../service/googleSheetsService');
 
 var router = express.Router();
 
-router.get('/requests/financial', async function(err, res){
+router.get('/financial', async function(err, res){
     console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
@@ -22,6 +19,7 @@ router.get('/requests/financial', async function(err, res){
     }
     for (var i =1; i<data.length; i++) {
         var jsonData = {}
+        jsonData.uuid = uuidv4()
         jsonData.date = data[i][0]
         jsonData.name = data[i][1]
         jsonData.pronouns = data[i][2]
@@ -38,7 +36,7 @@ router.get('/requests/financial', async function(err, res){
 })
 
 
-router.get('/requests/material', async function(err, res){
+router.get('/material', async function(err, res){
     console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
@@ -53,6 +51,7 @@ router.get('/requests/material', async function(err, res){
     }
     for (var i =1; i<data.length; i++) {
         var jsonData = {}
+        jsonData.uuid = uuidv4()
         jsonData.date = data[i][0]
         jsonData.name = data[i][1]
         jsonData.email = data[i][2]
@@ -68,7 +67,7 @@ router.get('/requests/material', async function(err, res){
     return res.json(ret)
 })
 
-router.get('/requests/housing', async function(err, res){
+router.get('/housing', async function(err, res){
     console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
@@ -83,6 +82,7 @@ router.get('/requests/housing', async function(err, res){
     }
     for (var i =1; i<data.length; i++) {
         var jsonData = {}
+        jsonData.uuid = uuidv4()
         jsonData.date = data[i][0]
         jsonData.name = data[i][1]
         jsonData.housingType = data[i][2]
