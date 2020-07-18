@@ -23,7 +23,7 @@ async function getSpreadSheet({spreadsheetId, auth}) {
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId,
       auth,
-      values: range
+      range: range
     });
     return res;
   }
