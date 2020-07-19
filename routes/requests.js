@@ -6,7 +6,6 @@ const { getDb } = require('../service/firebaseService');
 var router = express.Router();
 
 router.get('/financial', async function(err, res){
-    console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     let spreadsheetId = "1ytR65k2UFqVecAuTz2o5hINGvONkmEAh2EYEOO9z4zM"
@@ -43,7 +42,6 @@ router.get('/financial', async function(err, res){
 
 
 router.get('/material', async function(err, res){
-    console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     const spreadsheet = await getSpreadSheetValues({
@@ -54,7 +52,7 @@ router.get('/material', async function(err, res){
     var db = await getDb()
     data = spreadsheet.data.values
     for (var i =1; i<data.length; i++) {
-        if (data[i][9]=="True") {
+        if (data[i][9]=="TRUE") {
             continue;
         }
         writeToSpreadsheetDatabaseSavedStatus(409891992, i, 9)
@@ -79,7 +77,6 @@ router.get('/material', async function(err, res){
 })
 
 router.get('/housing', async function(err, res){
-    console.log(require('dotenv').config())
     res.status(200)
     res.setHeader('Content-Type', 'application/json');
     const spreadsheet = await getSpreadSheetValues({
@@ -91,7 +88,7 @@ router.get('/housing', async function(err, res){
     var db = await getDb()
     data = spreadsheet.data.values
     for (var i =1; i<data.length; i++) {
-        if (data[i][13]=="True") {
+        if (data[i][13]=="TRUE") {
             continue;
         }
         writeToSpreadsheetDatabaseSavedStatus(902600689, i, 13)

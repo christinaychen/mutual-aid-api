@@ -6,7 +6,7 @@ const doc = new GoogleSpreadsheet('1ytR65k2UFqVecAuTz2o5hINGvONkmEAh2EYEOO9z4zM'
 async function getSpreadSheet() {
     await doc.useServiceAccountAuth({
         client_email: process.env.GOOGLE_SERVICE_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY
+        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
     })
     await doc.loadInfo()
 }
