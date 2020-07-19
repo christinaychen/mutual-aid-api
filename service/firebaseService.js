@@ -35,8 +35,12 @@ async function signUp(firstName, lastName, uuid) {
     })
 }
 
+async function getUserFirstName(uuid) {
+
+}
 
 module.exports = {
   signUp,
-  getDb
+  getDb,
+  getUserFirstName
 }
